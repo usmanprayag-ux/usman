@@ -381,9 +381,13 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
 .card-lab b{ font-size:clamp(13px,1.15vw,17px); font-weight:400; letter-spacing:.02em; text-transform:uppercase; }
 .card-lab .jp{ font-size:11px; letter-spacing:.3em; color:rgba(223,231,224,.62); }
-.card-ar{ position:absolute; top:14px; right:14px; z-index:2; width:26px; height:26px;
-  opacity:0; transform:translate3d(-4px,4px,0); transition:.5s var(--ease-out); }
-.card:hover .card-ar{ opacity:1; transform:none; }
+.card-ar{ position:absolute; top:14px; right:14px; z-index:2; width:30px; height:30px;
+  display:flex; align-items:center; justify-content:center; border-radius:50%;
+  backdrop-filter:blur(14px) saturate(1.2); -webkit-backdrop-filter:blur(14px) saturate(1.2);
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.3), 0 4px 16px rgba(0,0,0,.5);
+  opacity:0; transform:translate3d(-4px,4px,0); transition:.4s var(--ease-out); }
+.card:hover .card-ar{ opacity:1; transform:none; background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.38); box-shadow:inset 0 1px 1.5px rgba(255,255,255,.45), 0 6px 20px rgba(0,0,0,.6); }
 .card-meta{ display:flex; justify-content:space-between; margin-top:12px;
   font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
 
@@ -460,11 +464,11 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   margin-top: clamp(36px, 5vh, 52px);
   width: min(100%, 640px);
   border-radius: 28px;
-  background: rgba(10, 14, 20, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(28px) saturate(1.2);
-  -webkit-backdrop-filter: blur(28px) saturate(1.2);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  background: rgba(8, 12, 18, 0.60);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(36px) saturate(1.8) brightness(1.1);
+  -webkit-backdrop-filter: blur(36px) saturate(1.8) brightness(1.1);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 255, 255, 0.08), inset 0 2px 3px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.7);
   padding: clamp(24px, 4vw, 36px);
   text-align: left;
   transition: transform 0.4s var(--ease-out), border-color 0.4s, box-shadow 0.4s;
@@ -472,8 +476,8 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   overflow: hidden;
 }
 .portfolio-card:hover{
-  border-color: rgba(224, 35, 28, 0.55);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 35px rgba(224, 35, 28, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  border-color: rgba(224, 35, 28, 0.65);
+  box-shadow: 0 36px 100px rgba(0, 0, 0, 0.9), 0 0 40px rgba(224, 35, 28, 0.3), inset 0 2px 3px rgba(255, 255, 255, 0.65);
   transform: translateY(-3px);
 }
 .portfolio-card-head{
@@ -483,7 +487,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   flex-wrap: wrap;
   gap: 12px;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 .portfolio-status{
   display: inline-flex;
@@ -527,11 +531,14 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   font-family: monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 5px 11px;
+  padding: 6px 13px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: #c7d2cb;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.35), 0 4px 12px rgba(0,0,0,0.3);
+  color: #ffffff;
 }
 .portfolio-actions{
   display: flex;
@@ -563,26 +570,44 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   box-shadow: 0 10px 32px rgba(224, 35, 28, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.5);
   color: #ffffff !important;
 }
+.portfolio-btn-primary svg{
+  box-sizing: content-box;
+  padding: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s;
+}
+.portfolio-btn-primary:hover svg{
+  transform: translate(2px, -2px);
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(255, 255, 255, 0.55);
+}
 .portfolio-btn-secondary{
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 13px 22px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #dfe7e0 !important;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.4), 0 4px 16px rgba(0,0,0,0.4);
+  color: #ffffff !important;
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
 .portfolio-btn-secondary:hover{
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: inset 0 2px 2.5px rgba(255, 255, 255, 0.6), 0 6px 20px rgba(0,0,0,0.5);
 }
 
 /* — footer */

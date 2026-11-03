@@ -7,6 +7,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { KageLandingPage } from './effects/kage-landing-page/KageLandingPage';
 import { SmoothMode } from './shaders/landing-pages/LandingPageFrame';
 import { CommandSearchBar } from './components/CommandSearchBar';
+import { MagneticKey } from './components/MagneticKey';
 import './effects/kage-landing-page/styles.css';
 import { Maximize2, Minimize2 } from 'lucide-react';
 
@@ -283,21 +284,24 @@ export default function App() {
         </div>
       </div>
 
-      {/* Fullscreen Button (Top Right Glass Pill) */}
+      {/* Fullscreen Button (Top Right Intense Glass Pill with Magnetic Attraction) */}
       <div
         className="absolute top-3.5 right-4 z-40 flex items-center transition-transform duration-300 ease-out"
         style={{ transform: spatialTransform }}
       >
-        <button
+        <MagneticKey
+          strength={0.4}
+          radius={70}
           onClick={toggleFullscreen}
           title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
-          className="p-2.5 rounded-full backdrop-blur-2xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/[0.15] text-[#dfe7e0] transition-all hover:scale-105 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)]"
+          ariaLabel={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+          className="p-2.5 rounded-full backdrop-blur-3xl backdrop-saturate-200 bg-white/[0.16] hover:bg-white/[0.28] border border-white/[0.38] hover:border-white/[0.6] text-white cursor-pointer shadow-[0_12px_36px_rgba(0,0,0,0.7),0_0_20px_rgba(255,255,255,0.18),inset_0_1.5px_2.5px_rgba(255,255,255,0.65),inset_0_-1px_1px_rgba(0,0,0,0.4)] transition-all"
         >
           {isFullscreen ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
-        </button>
+        </MagneticKey>
       </div>
 
-      {/* Glassmorphic Chapter Dock - Centered in Between the Bottom Screen */}
+      {/* Intense Glassmorphic Chapter Dock - Centered in Between the Bottom Screen with Magnetic Keys */}
       <div className="fixed inset-x-0 bottom-8 z-30 flex justify-center pointer-events-none px-4">
         <div
           className="pointer-events-auto transition-transform duration-300 ease-out"
@@ -307,21 +311,31 @@ export default function App() {
               : 'none',
           }}
         >
-          <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 rounded-full backdrop-blur-2xl bg-[#05070a]/75 border border-white/[0.16] shadow-[0_16px_40px_rgba(0,0,0,0.7),inset_0_1px_2px_rgba(255,255,255,0.25)]">
+          <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-full backdrop-blur-3xl backdrop-saturate-200 bg-[#05070a]/60 border border-white/[0.28] shadow-[0_24px_64px_rgba(0,0,0,0.85),0_0_30px_rgba(255,255,255,0.08),inset_0_2px_3px_rgba(255,255,255,0.5),inset_0_-1px_2px_rgba(0,0,0,0.7)]">
             {CHAPTERS.map((ch, idx) => (
-              <button
+              <MagneticKey
                 key={ch.id}
+                strength={0.32}
+                radius={65}
                 onClick={() => jumpToChapter(ch.id, idx + 1)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs transition-all ${
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs cursor-pointer transition-all duration-200 ${
                   activeChapter === idx + 1
-                    ? 'bg-gradient-to-r from-[#e0231c] to-[#ff5a3c] text-white font-medium shadow-[0_0_18px_rgba(224,35,28,0.6),inset_0_1px_1px_rgba(255,255,255,0.4)]'
-                    : 'text-[#aab4ad] hover:text-[#dfe7e0] hover:bg-white/[0.08]'
+                    ? 'bg-gradient-to-r from-[#e0231c]/95 via-[#f03b2b]/95 to-[#ff5a3c]/95 text-white font-medium shadow-[0_0_28px_rgba(224,35,28,0.85),0_4px_16px_rgba(224,35,28,0.5),inset_0_2px_2.5px_rgba(255,255,255,0.7)] border border-white/[0.45]'
+                    : 'text-[#d1dcd4] hover:text-white bg-white/[0.06] hover:bg-white/[0.18] border border-white/[0.12] hover:border-white/[0.32] shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.25)]'
                 }`}
               >
-                <span className="text-[10px] font-mono opacity-80">{ch.num}</span>
+                <span
+                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded-md backdrop-blur-md transition-colors ${
+                    activeChapter === idx + 1
+                      ? 'bg-black/40 text-white border border-white/[0.3] shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)]'
+                      : 'bg-white/[0.14] text-white border border-white/[0.26] shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.4)]'
+                  }`}
+                >
+                  {ch.num}
+                </span>
                 <span className="hidden sm:inline font-light tracking-wide">{ch.title}</span>
-                <span className="text-[10px] opacity-70 hidden md:inline font-normal">{ch.jp}</span>
-              </button>
+                <span className="text-[10px] opacity-75 hidden md:inline font-normal">{ch.jp}</span>
+              </MagneticKey>
             ))}
           </div>
         </div>
