@@ -1,0 +1,6 @@
+{
+  "name": "Kage — Where Stillness Reveals the Unseen",
+  "description": "An interactive, cinematic five-chapter night walk through a Kyoto mountain temple rendered live with Three.js, depth-based mountain layer parallax, Three.js fireflies, scroll choreography, and top Spotlight command search.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
